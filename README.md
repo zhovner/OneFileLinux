@@ -5,8 +5,10 @@ Live linux distro combined in one EFI file.
 ## Install on Mac
 
 ### 1. Mount EFI System Partition 
-```mkdir /tmp/efi
-sudo mount -t msdos /tmp/efi /dev/diskN```
+```
+mkdir /tmp/efi
+sudo mount -t msdos /tmp/efi /dev/diskN
+```
 To find out EFI partition disk number use *diskutil list*
 
 ### 2. Copy OneFileLinux.EFI to EFI Partiotion

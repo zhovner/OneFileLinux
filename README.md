@@ -75,3 +75,7 @@ General Setup --->
 Build kernel  
 
 `make -j4`
+
+### Get kernel file 
+
+`cp linux-4.16-rc1/arch/x86/boot/bzImage ./OneFileLinux.efi`

@@ -1,5 +1,6 @@
 ## One File Linux
 Live linux distro combined in one EFI file.  
+Download here https://github.com/zhovner/OneFileLinux/releases/tag/v0.1-alpha
 
 
 ## Install on Mac

@@ -1,0 +1,14 @@
+#!/sbin/openrc-run
+
+description="Message logging system"
+
+name="busybox syslog"
+command="/sbin/syslogd"
+command_args="${SYSLOGD_OPTS}"
+pidfile="/var/run/syslogd.pid"
+start_stop_daemon_args="-g wheel -k 027"
+
+depend() {
+	need clock hostname klogd localmount
+	provide logger
+}

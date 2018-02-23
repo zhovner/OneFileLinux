@@ -1,0 +1,39 @@
+#!/sbin/openrc-run
+
+depend() {
+	provide dev
+	need sysfs dev-mount
+	before checkfs fsck
+	keyword -vserver -lxc
+}
+
+start() {
+	# check if udev is specified on cmd line
+	if get_bootparam "udev"; then
+		ewarn "Skipping mdev as udev requested in kernel cmdline"
+		return 0
+	fi
+	
+	ebegin "Starting busybox mdev"
+	mkdir -p /dev
+
+	# use mdev for hotplug
+	echo "/sbin/mdev" > /proc/sys/kernel/hotplug
+	
+	# mdev -s will not create /dev/usb[1-9] devices with recent kernels
+	# so we trigger hotplug events for usb for now
+	for i in $(find /sys/devices -name 'usb[0-9]*'); do
+		[ -e $i/uevent ] && echo add > $i/uevent
+	done
+
+	# create devices
+	mdev -s
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping busybox mdev"
+	echo "" > /proc/sys/kernel/hotplug
+	eend 
+}
+

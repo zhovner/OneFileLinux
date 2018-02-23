@@ -1,0 +1,12 @@
+#!/bin/sh
+
+[ -f /sys/block/$MDEV/capability ] || exit
+
+caps="0x`cat /sys/block/$MDEV/capability`"
+
+if [ $(($caps & 8)) -gt 0 ]; then
+	case $ACTION in
+	add|"")	ln -sf $MDEV cdrom ;;
+	remove) [ "`readlink cdrom 2>/dev/null`" = $MDEV ] && rm -f cdrom ;;
+	esac
+fi

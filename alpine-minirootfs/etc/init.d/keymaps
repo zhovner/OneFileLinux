@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+
+description="Applies a keymap for the consoles."
+
+depend()
+{
+	need localmount
+	keyword -openvz -prefix -uml -vserver -xenu -lxc
+}
+
+start() {
+	[ -z "$KEYMAP" ] && return
+	ebegin "Setting keymap"
+	zcat "$KEYMAP" | loadkmap
+	eend $?
+}
+
+stop() {
+	return
+}

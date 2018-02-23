@@ -1,0 +1,2 @@
+# By default ntpd runs as a client. Add -l to run as a server on port 123.
+NTPD_OPTS="-N -p pool.ntp.org"

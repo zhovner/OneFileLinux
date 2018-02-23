@@ -1,0 +1,66 @@
+#!/sbin/openrc-run
+
+description="Set sysfs variables from /etc/sysfs.conf and /etc/sysfs.d/*.conf"
+conffile=/etc/sysfs.conf
+confdir=/etc/sysfs.d
+
+depend() {
+	need sysfs
+}
+
+setval() {
+	local value="$1" attrib="$2"
+	# Some fields need a terminating newline, others
+	# need the terminating newline to be absent :-(
+	echo -n "$value" > "$attrib" 2>/dev/null \
+		|| echo "$value" > "$attrib"
+}
+
+load_conffile() {
+	local file="$1"
+	while read line; do
+		local line=${line%%#*}
+		local cmd= attrib= value=
+		set -- $line
+		if [ $# -eq 0 ]; then
+			continue
+		fi
+		case "$1$3" in
+			mode=)	cmd=chmod
+				attrib="$2"
+				value="$4"
+				;;
+			owner=) cmd=chown
+				attrib="$2"
+				value="$4"
+				;;
+			*)	if [ "$2" = "=" ]; then
+					cmd=setval
+					attrib="$1"
+					value="$3"
+				fi
+				;; 
+		esac
+		if ! [ -e "/sys/$attrib" ]; then
+			eerror "$attrib: unknown attribute"
+			continue
+		fi
+		if [ -z "$attrib" ] || [ -z "$value" ]; then
+			eerror "syntax error in $file: '$line'"
+			continue
+		fi
+		$cmd "$value" "/sys/$attrib"
+	done < "$file"
+}
+
+start() {
+	[ -r "$conffile" -o -d "$confdir" ] || return 0
+	ebegin "Setting sysfs variables"
+	for file in $confdir/*.conf $conffile; do
+		[ -r "$file" ] || continue
+		load_conffile "$file" || return 1
+	done
+	eend 0
+
+}
+

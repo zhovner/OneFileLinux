@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Block ifup until DAD completion
+# Copyright (c) 2016 Kaarle Ritvanen
+
+while ip address show dev $IFACE | grep -q " tentative "; do
+	sleep 0.2
+done

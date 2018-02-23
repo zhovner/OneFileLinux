@@ -1,0 +1,32 @@
+#!/sbin/openrc-run
+
+depend() {
+	need sysfs dev
+	before checkfs fsck
+	after modloop
+	keyword -vserver -lxc
+}
+
+# Load hardware drivers
+start() {
+	# check for boot option "nocoldplug"
+	if get_bootparam noautodetect; then
+		ewarn "Autodetection of hardware disabled from boot cmdline"
+		return 0
+	fi
+
+	ebegin "Loading hardware drivers"
+	find /sys -name modalias -type f -print0 | xargs -0 sort -u \
+		| xargs modprobe -b -a 2> /dev/null
+	# we run it twice so we detect all devices
+	find /sys -name modalias -type f -print0 | xargs -0 sort -u \
+		| xargs modprobe -b -a 2> /dev/null
+
+	# check if framebuffer drivers got pulled in
+	if [ -e /dev/fb0 ] && ! [ -e /sys/module/fbcon ]; then
+		modprobe -b -q fbcon
+	fi
+
+	eend 0
+}
+

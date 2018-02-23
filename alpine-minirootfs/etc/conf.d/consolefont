@@ -1,0 +1,11 @@
+# The consolefont service is not activated by default. If you need to
+# use it, you should run "rc-update add consolefont boot" as root.
+#
+# consolefont specifies the default font that you'd like Linux to use on the
+# console.  You can find a good selection of fonts in /usr/share/consolefonts;
+consolefont="default8x16.psf.gz"
+
+# consoletranslation is the charset map file to use.  Leave commented to use
+# the default one.  Have a look in /usr/share/consoletrans for a selection of
+# map files you can use.
+#consoletranslation="8859-1_to_uni.trans"

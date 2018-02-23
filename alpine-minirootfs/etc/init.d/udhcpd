@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+
+name="busybox $SVCNAME"
+command="/usr/sbin/$SVCNAME"
+command_args="$UDHCPD_OPTS "
+pidfile="/var/run/$SVCNAME.pid"
+
+depend() {
+	need net
+	after firewall
+}

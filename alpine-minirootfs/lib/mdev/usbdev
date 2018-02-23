@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# mdev -s will not set SUBSYSTEM or DEVNAME so we trigger a hotplug event
+if [ "$SUBSYSTEM" != "usb" ] || [ "$DEVTYPE" != "usb_device" ]; then
+	uev=/sys/bus/usb/devices/$MDEV/uevent
+	[ -e "$uev" ] && echo "add" > "$uev"
+	exit
+fi
+
+[ -n "$DEVNAME" ] || exit
+
+case "$ACTION" in
+add)
+	mkdir -p "${DEVNAME%/*}"
+	mv $MDEV $DEVNAME
+	# autoload driver
+	for i in /sys/$DEVPATH/*/modalias; do
+		[ -e "$i" ] && echo $i
+	done | xargs sort -u | xargs modprobe -a 2>/dev/null
+	;;
+remove)
+	rm $DEVNAME
+	;;
+esac
+

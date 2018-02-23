@@ -1,0 +1,124 @@
+#!/sbin/openrc-run
+
+# script that will mount image with modules
+
+depend() {
+	after dev-mount
+	before checkfs fsck hwdrivers modules hwclock dev sysfs
+	keyword -vserver -lxc
+}
+
+# read kernel options
+init_KOPT() {
+	for opt in $(cat /proc/cmdline 2>/dev/null); do
+	        case "$opt" in
+			modloop=*)
+				eval "KOPT_${opt%%=*}='${opt#*=}'" ;;
+		esac
+	done
+}
+
+mountdirs() {
+	awk '$2 !~ /^\/(sys|proc|dev|run)/ && $2 != "/" {print $2}' /proc/mounts
+}
+
+find_modloop() {
+	local dir="$1"
+	local kver=$(uname -r)
+	local oifs="$IFS"
+	IFS=$'\n'
+	set -- $(blkid "$dir"/boot/* "$dir"/*)
+	IFS="$oifs"
+	for line; do
+		img=${line%%:*}
+		mount "$img" -o loop,ro /.modloop || continue
+		if [ -d /.modloop/modules/$kver ]; then
+			return 0
+		fi
+		umount /.modloop
+	done
+	return 1
+}
+
+find_backing_file() {
+	local dir="$1"
+	local dev=$(df -P "$dir" | tail -1 | awk '{print $1}')
+	cat /sys/block/${dev#/dev/}/loop/backing_file 2>/dev/null
+}
+
+start() {
+	local modloop= mount_opts= modloop_dldir="/lib"
+	init_KOPT
+
+	mkdir -p /.modloop /lib
+	case "$KOPT_modloop" in
+		http://*|https://*|ftp://*)
+			wget -P "$modloop_dldir" "$KOPT_modloop" \
+				&& modloop=$modloop_dldir/$(basename $KOPT_modloop)
+			;;
+		*)
+			for dir in $(mountdirs); do
+				if [ -f "$dir"/$KOPT_modloop ]; then
+					modloop="$dir/${KOPT_modloop##/}"
+					alpine_mnt="$dir"
+					break
+				fi
+			done
+			;;
+	esac
+
+	ebegin "Mounting modloop $modloop"
+	if [ -n "$modloop" ]; then
+		mount -o loop,ro $modloop /.modloop
+		eend $? || return 1
+	else
+		for dir in $(mountdirs); do
+			if find_modloop "$dir"; then
+				alpine_mnt="$dir"
+				break
+			fi
+		done
+		if [ -d /.modloop/modules/$(uname -r) ]; then
+			eend 0
+		else
+			eend 1 || return 1
+		fi
+	fi
+
+	#use overlayfs if available and configured
+	if grep -q -w "overlay$" /proc/filesystems && [ -n "$unionfs_size" ]; then
+		ebegin "OverlayFS detected, mounting modloop rw"
+		mkdir -p /.modunisonfs /lib/modules
+		mount -t tmpfs -o size="$unionfs_size" tmpfs /.modunisonfs
+		mkdir -p /.modunisonfs/modules /.modunisonfs/work
+		mount -t overlay -o upperdir=/.modunisonfs/modules,lowerdir=/.modloop/modules,workdir=/.modunisonfs/work overlay /lib/modules
+		eend $? || return 1
+	else
+		rm -rf /lib/modules && ln -sf /.modloop/modules /lib/
+	fi
+
+	# copy firmware if there are any
+	if [ -d $alpine_mnt/firmware ]; then
+	        ebegin "Copying firmware from $alpine_mnt/firmware"
+	        cp -R -a $alpine_mnt/firmware /lib/
+	        eend $?
+	elif  [ -d /lib/modules/firmware ]; then
+		rmdir /lib/firmware 2>/dev/null \
+			&& ln -s /lib/modules/firmware /lib/
+	fi
+	return 0
+}
+
+stop() {
+	local rc=0
+	if mountinfo --quiet /.modunisonfs/modules && mountinfo --quiet /lib/modules; then
+		umount /lib/modules
+		umount /.modunisonfs/modules
+	fi
+	if mountinfo --quiet /.modloop; then
+		ebegin "Unmounting /.modloop"
+		umount -d /.modloop
+		eend $? || return 1
+	fi
+}
+

@@ -1,0 +1,29 @@
+#!/sbin/openrc-run
+
+description="Loads a user defined list of kernel modules."
+
+depend()
+{
+	before hwclock hwdrivers
+	keyword -openvz -prefix -vserver -lxc
+}
+
+start() {
+	ebegin "Loading modules"
+	for f in /etc/modules \
+			/etc/modules-load.d/*.conf \
+			/run/modules-load.d/*.conf \
+			/usr/lib/modules-load.d/*.conf \
+			/lib/modules-load.d/*.conf; do
+		if ! [ -f "$f" ]; then
+			continue
+		fi
+
+		sed -e 's/\#.*//g' -e '/^[[:space:]]*$/d' < "$f" \
+			| while read module args; do
+			modprobe -q $module $args
+		done
+	done
+	eend $?
+}
+

@@ -4,7 +4,11 @@ alpine-keys
 apk-tools
 busybox
 busybox-initscripts
+dropbear
+dropbear-ssh
 efibootmgr
 libc-utils
+nano
 openrc
+parted
 reaver-wps-fork-t6x

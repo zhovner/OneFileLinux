@@ -60,3 +60,4 @@ linux-firmware/
 /linux-4.16-rc1/*
 /linux-4.16-rc1/*.*
 !/linux-4.16-rc1/.config
+/OneFileLinux.efi

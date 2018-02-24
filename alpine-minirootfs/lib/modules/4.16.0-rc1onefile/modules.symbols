@@ -1,0 +1,27 @@
+# Aliases for symbols, used by symbol_request().
+alias symbol:brcmu_pktq_pflush brcmutil
+alias symbol:brcmu_pktq_init brcmutil
+alias symbol:brcmu_pktq_pdeq_match brcmutil
+alias symbol:brcmu_dotrev_str brcmutil
+alias symbol:brcmu_pktq_penq_head brcmutil
+alias symbol:mii_ethtool_sset mii
+alias symbol:brcmu_pktq_pdeq brcmutil
+alias symbol:mii_check_gmii_support mii
+alias symbol:brcmu_pktq_penq brcmutil
+alias symbol:brcmu_boardrev_str brcmutil
+alias symbol:brcmu_pktq_mdeq brcmutil
+alias symbol:mii_nway_restart mii
+alias symbol:mii_ethtool_set_link_ksettings mii
+alias symbol:brcmu_pkt_buf_free_skb brcmutil
+alias symbol:brcmu_pkt_buf_get_skb brcmutil
+alias symbol:brcmu_pktq_flush brcmutil
+alias symbol:mii_link_ok mii
+alias symbol:brcmu_pktq_pdeq_tail brcmutil
+alias symbol:mii_ethtool_gset mii
+alias symbol:brcmu_d11_attach brcmutil
+alias symbol:brcmu_pktq_peek_tail brcmutil
+alias symbol:generic_mii_ioctl mii
+alias symbol:brcmu_pktq_mlen brcmutil
+alias symbol:mii_check_media mii
+alias symbol:mii_check_link mii
+alias symbol:mii_ethtool_get_link_ksettings mii

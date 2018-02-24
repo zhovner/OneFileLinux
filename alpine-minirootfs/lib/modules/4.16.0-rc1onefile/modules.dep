@@ -1,0 +1,16 @@
+kernel/drivers/mfd/intel-lpss-pci.ko:
+kernel/drivers/spi/spi-pxa2xx-platform.ko:
+kernel/drivers/spi/spi-pxa2xx-pci.ko:
+kernel/drivers/net/ethernet/broadcom/b44.ko: kernel/drivers/net/mii.ko
+kernel/drivers/net/ethernet/intel/e100.ko: kernel/drivers/net/mii.ko
+kernel/drivers/net/ethernet/intel/e1000/e1000.ko:
+kernel/drivers/net/ethernet/intel/e1000e/e1000e.ko:
+kernel/drivers/net/ethernet/intel/igb/igb.ko:
+kernel/drivers/net/ethernet/realtek/8139cp.ko: kernel/drivers/net/mii.ko
+kernel/drivers/net/ethernet/realtek/8139too.ko: kernel/drivers/net/mii.ko
+kernel/drivers/net/ethernet/realtek/r8169.ko: kernel/drivers/net/mii.ko
+kernel/drivers/net/wireless/broadcom/b43/b43.ko:
+kernel/drivers/net/wireless/broadcom/b43legacy/b43legacy.ko:
+kernel/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko:
+kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko: kernel/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko
+kernel/drivers/net/mii.ko:

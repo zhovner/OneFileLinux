@@ -1,3 +1,6 @@
-# enable loadable module support when running from RAM
-# when unionfs support is available in the kernel
-unionfs_size="32M"
+# Enable loadable module support when running from RAM
+# when OverlayFS support is available in the kernel.
+# 0 means default tmpfs size (50% of physical RAM).
+# for more information please see kernel documention at:
+# https://www.kernel.org/doc/Documentation/filesystems/tmpfs.txt
+overlay_size=0

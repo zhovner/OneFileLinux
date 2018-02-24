@@ -5,8 +5,8 @@
 ::wait:/sbin/openrc default
 
 # Set up a couple of getty's
-tty1::respawn:/sbin/getty 38400 tty1
-tty2::respawn:/sbin/getty 38400 tty2
+tty1::respawn:/sbin/getty -l /bin/ash 38400 tty1
+tty2::respawn:/sbin/getty -l /bin/ash 38400 tty2
 tty3::respawn:/sbin/getty 38400 tty3
 tty4::respawn:/sbin/getty 38400 tty4
 tty5::respawn:/sbin/getty 38400 tty5

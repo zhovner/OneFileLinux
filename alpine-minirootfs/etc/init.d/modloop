@@ -53,8 +53,8 @@ start() {
 	mkdir -p /.modloop /lib
 	case "$KOPT_modloop" in
 		http://*|https://*|ftp://*)
-			wget -P "$modloop_dldir" "$KOPT_modloop" \
-				&& modloop=$modloop_dldir/$(basename $KOPT_modloop)
+			modloop=$modloop_dldir/${KOPT_modloop##*/}
+			[ ! -f "$modloop" ] && wget -P "$modloop_dldir" "$KOPT_modloop"
 			;;
 		*)
 			for dir in $(mountdirs); do
@@ -86,12 +86,17 @@ start() {
 	fi
 
 	#use overlayfs if available and configured
-	if grep -q -w "overlay$" /proc/filesystems && [ -n "$unionfs_size" ]; then
+	if grep -q -w "overlay$" /proc/filesystems && [ ! -z ${unionfs_size+x} ]; then
+		ewarn "Use of unionfs_size is deprecated use overlay_size instead"
+		overlay_size="$unionfs_size"
+	fi
+	if grep -q -w "overlay$" /proc/filesystems && [ -n "$overlay_size" ]; then
 		ebegin "OverlayFS detected, mounting modloop rw"
-		mkdir -p /.modunisonfs /lib/modules
-		mount -t tmpfs -o size="$unionfs_size" tmpfs /.modunisonfs
-		mkdir -p /.modunisonfs/modules /.modunisonfs/work
-		mount -t overlay -o upperdir=/.modunisonfs/modules,lowerdir=/.modloop/modules,workdir=/.modunisonfs/work overlay /lib/modules
+		[ "$overlay_size" != 0 ] && mount_ops="-o size=$overlay_size"
+		mkdir -p /.modoverlayfs /lib/modules
+		mount -t tmpfs $mount_ops tmpfs /.modoverlayfs
+		mkdir -p /.modoverlayfs/modules /.modoverlayfs/work
+		mount -t overlay -o upperdir=/.modoverlayfs/modules,lowerdir=/.modloop/modules,workdir=/.modoverlayfs/work overlay /lib/modules
 		eend $? || return 1
 	else
 		rm -rf /lib/modules && ln -sf /.modloop/modules /lib/
@@ -110,15 +115,13 @@ start() {
 }
 
 stop() {
-	local rc=0
-	if mountinfo --quiet /.modunisonfs/modules && mountinfo --quiet /lib/modules; then
-		umount /lib/modules
-		umount /.modunisonfs/modules
-	fi
-	if mountinfo --quiet /.modloop; then
-		ebegin "Unmounting /.modloop"
-		umount -d /.modloop
-		eend $? || return 1
-	fi
+	local ret=0
+	local mnt; for mnt in /lib/modules /.modoverlayfs /.modloop; do
+		if mountinfo --quiet "$mnt"; then
+			ebegin "Unmounting $mnt"
+			umount -d "$mnt" || ret=1
+		fi
+	done
+	eend $ret || return 1
 }
 

@@ -2,22 +2,28 @@
 Live linux distro combined in one EFI file.  
 Download here https://github.com/zhovner/OneFileLinux/releases/tag/v0.1-alpha
 
+More information in russian https://habrahabr.ru/post/349758/
 
 ## Install on Mac
 
 ### 1. Mount EFI System Partition 
 ```
-mkdir /tmp/efi
-sudo mount -t msdos /tmp/efi /dev/diskN
+diskutil mount disk_NUMBER 
 ```
-To find out EFI partition disk number use *diskutil list*
+To find out EFI partition disk number use `diskutil list`  
+<img src="https://habrastorage.org/webt/_y/h2/j5/_yh2j5hz9dqthcegf5sebnmxmui.png" width="500">
+
+The command is as follows in my case:
+```
+diskutil mount disk0s1
+```
 
 ### 2. Copy OneFileLinux.EFI to EFI Partiotion
-`cp ~/Downloads/OneFileLinux.efi /tmp/efi/`
+`cp ~/Downloads/OneFileLinux.efi /Volumes/EFI`
 
 
 ### 3. Set NVRAM to boot linux once
-`sudo bless --mount /tmp/efi --setBoot --nextonly --file /tmp/OneFileLinux.efi`
+`sudo bless --mount /Volumes/EFI --setBoot --nextonly --file /Volumes/EFI/OneFileLinux.efi`
 
 This command will boot linux only once. Next reboot will return previous boot sequence.
 
@@ -60,7 +66,10 @@ Edit what you need. Install packages with `apk` packet manager.
 
 ### Create cpio file
 
-`find ./alpine-minirootfs | cpio -H newc -o > ./alpineramfs.cpio`
+```
+cd ./alpine-minirootfs
+find . | cpio -H newc -o > ../alpineramfs.cpio
+```
 
 ### Build kernel
 

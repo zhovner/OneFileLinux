@@ -64,28 +64,11 @@ Chroot into root filesystem
 
 Edit what you need. Install packages with `apk` packet manager.
 
-### Create cpio file
 
+### Build
+
+Run bulding script  
 ```
-cd ./alpine-minirootfs
-find . | cpio -H newc -o > ../alpineramfs.cpio
-```
-
-### Build kernel
-
-Edit  path to `alpineramfs.cpio` in kernel config  
-
-```
-$ make menuconfig
-
-General Setup --->
-   Initramfs source file
+./build.sh
 ```
 
-Build kernel  
-
-`make -j4`
-
-### Get kernel file 
-
-`cp linux-4.16-rc1/arch/x86/boot/bzImage ./OneFileLinux.efi`

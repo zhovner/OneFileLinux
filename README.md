@@ -1,5 +1,5 @@
 ## One File Linux
-<img width=700 alt="One File Linux" src="https://habrastorage.org/webt/yo/oo/1e/yooo1e0i2u4frjrlhnmtqifmpsy.png") />
+<img width=700 alt="One File Linux" src="https://habrastorage.org/webt/yo/oo/1e/yooo1e0i2u4frjrlhnmtqifmpsy.png" />
 
 Live linux distro combined in one EFI file.  
 Download here https://github.com/zhovner/OneFileLinux/releases/tag/v0.1-alpha

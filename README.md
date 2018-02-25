@@ -63,7 +63,7 @@ This repository contatins `linux-4.16-rc1/.config` file with kernel config.
 ### Edit root filesystem
 
 Chroot into root filesystem  
-`chroot ./alpine-minirootfs /bin/as`
+`chroot ./alpine-minirootfs /bin/ash`
 
 Edit what you need. Install packages with `apk` packet manager.
 

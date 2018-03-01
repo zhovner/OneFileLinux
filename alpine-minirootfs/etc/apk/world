@@ -4,11 +4,16 @@ alpine-keys
 apk-tools
 busybox
 busybox-initscripts
+dmidecode
 dropbear
 dropbear-ssh
 efibootmgr
+iwlwifi-1000-ucode
+iwlwifi-5000-ucode
+iwlwifi-6000-ucode
 libc-utils
 nano
 openrc
 parted
 reaver-wps-fork-t6x
+wpa_supplicant

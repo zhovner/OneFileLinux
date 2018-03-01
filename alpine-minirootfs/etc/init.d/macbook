@@ -1,0 +1,35 @@
+#!/sbin/openrc-run
+
+description="Loads Macbook specific drivers"
+
+depend()
+{
+	need dev net
+	keyword -openvz -prefix -vserver -lxc
+}
+
+start() {
+	ebegin "Checking Macbook specific hardware"
+
+	while [ ! -e /dev/mem ]; do sleep 0.3; done
+
+	PRODUCTNAME=$(dmidecode --type 1 | grep "Product Name" | cut -d ":" -f 2 | tr -d " ")
+
+	case "$PRODUCTNAME" in
+		MacBook8,1)
+			einfo "Found MacBook8,1. Loading keyboard SPI drivers..."
+			modprobe spi_pxa2xx_platform
+			modprobe spi_pxa2xx_pci
+			modprobe applespi
+			;;
+		MacBook*)
+			einfo "Found $PRODUCTNAME. Loading keyboard SPI drivers..."
+			modprobe intel_lpss_pci
+			modprobe spi_pxa2xx_platform
+			modprobe applespi
+			;;
+	esac
+	eend $?
+}
+
+

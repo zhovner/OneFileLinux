@@ -1,0 +1,5 @@
+config APPLE_SPI
+	tristate "Apple SPI keyboard driver"
+	depends on APPLE_GMUX
+	help
+	  Apple SPI keyboard driver for Macbook 2016 and newer

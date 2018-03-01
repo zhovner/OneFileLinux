@@ -1,0 +1,27 @@
+#!/sbin/openrc-run
+
+description="Set console font size based on framebuffer resolution. Dirty hack."
+
+depend()
+{
+	need dev
+	after net
+	keyword -openvz -prefix -vserver -lxc
+}
+
+start() {
+	ebegin "Set console font size"
+
+	while [ ! -e /sys/class/graphics/fb0/virtual_size ]; do sleep 0.3; done
+
+	FBWIDTH=$(cat /sys/class/graphics/fb0/virtual_size | cut -d, -f1)
+	GBHEIGHT=$(cat /sys/class/graphics/fb0/virtual_size | cut -d, -f2)
+
+	if [ "$FBWIDTH" -ge 2000 ]; then
+		echo "Framebuffer resolution: $FBWIDTHx$GBHEIGHT"
+		/bin/fontsize 9
+	fi
+	eend $?
+}
+
+

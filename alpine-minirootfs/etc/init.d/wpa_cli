@@ -1,0 +1,9 @@
+#!/sbin/openrc-run
+
+command="/sbin/wpa_cli"
+pidfile="/var/run/${SVCNAME}.pid"
+command_args="${WPACLI_OPTS} -B -P ${pidfile} >/dev/null"
+
+depend() {
+	need wpa_supplicant
+}

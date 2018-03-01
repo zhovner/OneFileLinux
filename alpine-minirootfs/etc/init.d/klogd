@@ -6,7 +6,6 @@ command_args="${KLOGD_OPTS}"
 pidfile="/var/run/klogd.pid"
 
 depend() {
-	need clock hostname localmount
 	before net
 	keyword -vserver -lxc
 }

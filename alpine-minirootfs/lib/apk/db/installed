@@ -7662,3 +7662,225 @@ F:usr/lib
 F:usr/share
 F:usr/share/nano
 
+C:Q1gGwAxsXJQiaFWwRKs/FNVVB9eAA=
+P:dmidecode
+V:3.1-r0
+A:x86_64
+S:51775
+I:167936
+T:A utility for reporting system hardware as described by BIOS
+U:http://www.nongnu.org/dmidecode
+L:GPL
+o:dmidecode
+m:Nathan Angelacos <nangel@alpinelinux.org>
+t:1497204747
+c:6ecf4aa0bfc4bc87e7ab76c3242e0384eccae273
+D:so:libc.musl-x86_64.so.1
+F:usr
+F:usr/sbin
+R:biosdecode
+a:0:0:755
+Z:Q1YWYtqjkY7/TIQ9JZZeIu4wguuCc=
+R:vpddecode
+a:0:0:755
+Z:Q14Eb6Rqi4/tvGodM58WL40cXokV0=
+R:ownership
+a:0:0:755
+Z:Q1/tkNjPHiGuY/VuYpE4rdffwHIio=
+R:dmidecode
+a:0:0:755
+Z:Q1wCVIP9ZgPBlaJNbPjAxkGvgnj90=
+
+C:Q1MYkCGFEorx6UycFSrOMwfyOc7m0=
+P:dbus-libs
+V:1.10.24-r1
+A:x86_64
+S:123737
+I:299008
+T:D-BUS access libraries
+U:http://www.freedesktop.org/Software/dbus
+L:AFL-2.1 OR GPL-2.0+
+o:dbus
+m:Natanael Copa <ncopa@alpinelinux.org>
+t:1517979573
+c:f2625e8f31bb237d49e60a33eb1665b4979ead80
+D:so:libc.musl-x86_64.so.1
+p:so:libdbus-1.so.3=3.14.14
+r:dbus
+F:usr
+F:usr/lib
+R:libdbus-1.so.3.14.14
+a:0:0:755
+Z:Q1AXCNXMhv0oaznKccNViThDSYEro=
+R:libdbus-1.so.3
+a:0:0:777
+Z:Q1KfGd7PCjOfdbpjtg3duMZaCOV9U=
+
+C:Q1wffMdBtjRkfaTR764+Fdy7voSVM=
+P:pcsc-lite-libs
+V:1.8.23-r1
+A:x86_64
+S:24111
+I:90112
+T:Middleware to access a smart card using SCard API (PC/SC) (libraries)
+U:http://pcsclite.alioth.debian.org/pcsclite.html
+L:Custom
+o:pcsc-lite
+m:Timo Teräs <timo.teras@iki.fi>
+t:1518446692
+c:75ba1c056ea64eb1aaa0a0f20019294a0c634d56
+D:so:libc.musl-x86_64.so.1
+p:so:libpcsclite.so.1=1.0.0 so:libpcscspy.so.0=0.0.0
+F:usr
+F:usr/lib
+R:libpcsclite.so
+a:0:0:777
+Z:Q1JOgS7x+xWhCTvu5NKCnJxgIdDsk=
+R:libpcsclite.so.1
+a:0:0:777
+Z:Q1JOgS7x+xWhCTvu5NKCnJxgIdDsk=
+R:libpcscspy.so.0
+a:0:0:777
+Z:Q1tu+9TgPSqJj/2/aHwIu4TfeCWHc=
+R:libpcscspy.so.0.0.0
+a:0:0:755
+Z:Q1KowdwrbD5gPfYOIriOi+PzsuVPE=
+R:libpcsclite.so.1.0.0
+a:0:0:755
+Z:Q1Quw1V1M+sSrL0lpqy6ekOdlXewY=
+F:usr/lib/pcsc
+F:usr/lib/pcsc/drivers
+
+C:Q19Z7xA3Qq2y42dR2SUYaej6TWWtI=
+P:wpa_supplicant
+V:2.6-r11
+A:x86_64
+S:1455911
+I:3371008
+T:A utility providing key negotiation for WPA wireless networks
+U:https://w1.fi/wpa_supplicant/
+L:BSD
+o:wpa_supplicant
+m:Natanael Copa <ncopa@alpinelinux.org>
+t:1519850316
+c:56826afa0399402f00f4078ff3b8b08f7f5c9093
+D:so:libc.musl-x86_64.so.1 so:libcrypto.so.42 so:libdbus-1.so.3 so:libnl-3.so.200 so:libnl-genl-3.so.200 so:libpcsclite.so.1 so:libssl.so.44
+p:cmd:eapol_test cmd:wpa_cli cmd:wpa_passphrase cmd:wpa_supplicant
+F:etc
+F:etc/wpa_supplicant
+R:wpa_cli.sh
+a:0:0:755
+Z:Q1LzqXJmpkq5npDmtu77OJljIGyk8=
+F:etc/dbus-1
+F:etc/dbus-1/system.d
+R:wpa_supplicant.conf
+Z:Q1DquZetF/YiEJuiM4ctuM3lAOMmE=
+F:sbin
+R:wpa_supplicant
+a:0:0:755
+Z:Q1luCCdKmVG4LsAZHNoneZpaGMfMI=
+R:wpa_cli
+a:0:0:755
+Z:Q125PZ2Z9SRnwlASEjxvXkBDUiULg=
+R:wpa_passphrase
+a:0:0:755
+Z:Q1d6r6MLeRTvCQUKx+w5UAkGjkiHA=
+R:eapol_test
+a:0:0:755
+Z:Q1Mg1ypj/bc0xSAz/ouS6T7chEQaQ=
+F:usr
+F:usr/share
+F:usr/share/dbus-1
+F:usr/share/dbus-1/system-services
+R:fi.epitest.hostap.WPASupplicant.service
+a:0:0:755
+Z:Q1MR6VJVfJ8IXKhvywW31FxR7IC4w=
+F:var
+F:var/run
+F:var/run/wpa_supplicant
+
+C:Q1gIh44Feae84mT0O58zg/44B3Rdw=
+P:wpa_supplicant-openrc
+V:2.6-r11
+A:x86_64
+S:2421
+I:32768
+T:A utility providing key negotiation for WPA wireless networks (OpenRC init scripts)
+U:https://w1.fi/wpa_supplicant/
+L:BSD
+o:wpa_supplicant
+m:Natanael Copa <ncopa@alpinelinux.org>
+t:1519850316
+c:56826afa0399402f00f4078ff3b8b08f7f5c9093
+i:openrc wpa_supplicant=2.6-r11
+F:etc
+F:etc/init.d
+R:wpa_supplicant
+a:0:0:755
+Z:Q1yS55a87JfqxescMysn3xiggMLWA=
+R:wpa_cli
+a:0:0:755
+Z:Q1BkVb9YBtL8nKsiKUpYCeJefOtsE=
+F:etc/conf.d
+R:wpa_supplicant
+Z:Q1wMox4t25srXLr8PrpmMW6DaIuAg=
+R:wpa_cli
+Z:Q1brqUStshPKyCwZa+p6NE4XqR5/Q=
+
+C:Q1MbzIJ+wDbnwrQhE/nU7RC915WOU=
+P:iwlwifi-1000-ucode
+V:39.31.5.1-r0
+A:x86_64
+S:177777
+I:352256
+T:Intel WiFi Link 1000BGN Microcode
+U:http://intellinuxwireless.org/?p=iwlwifi
+L:custom
+o:iwlwifi-1000-ucode
+m:Natanael Copa <ncopa@alpinelinux.org>
+t:1430319498
+c:b256b90e38c8edc99a79b140bb248dbfa256a7af
+F:lib
+F:lib/firmware
+R:iwlwifi-1000-5.ucode
+a:0:0:755
+Z:Q1qCS7XxCyjOcc75GDbL0ldg6ptKM=
+
+C:Q1DONuu/TZwgQd9+1nfEiTua4jViQ=
+P:iwlwifi-6000-ucode
+V:9.221.4.1-r0
+A:x86_64
+S:213700
+I:466944
+T:Intel 6000 Series Wi-Fi Adapters Microcode
+U:http://intellinuxwireless.org/?p=iwlwifi
+L:custom
+o:iwlwifi-6000-ucode
+m:Natanael Copa <ncopa@alpinelinux.org>
+t:1430319212
+c:a7c2d41208a635e0194c0382768390a3896d3c60
+F:lib
+F:lib/firmware
+R:iwlwifi-6000-4.ucode
+a:0:0:755
+Z:Q1ozeSfRSb97IHL3n4MlAR/ls9rWg=
+
+C:Q1ZKl/Deellnx39SCjZJxq9amOfp0=
+P:iwlwifi-5000-ucode
+V:8.83.5.1-r0
+A:x86_64
+S:177873
+I:356352
+T:Intel WiFi 5100AGN, 5300AGN, and 5350AGN Microcode
+U:http://intellinuxwireless.org/?p=iwlwifi
+L:custom
+o:iwlwifi-5000-ucode
+m:Natanael Copa <ncopa@alpinelinux.org>
+t:1430312177
+c:e419ba82163ba01b8e9ff60c9f523348af5a4924
+F:lib
+F:lib/firmware
+R:iwlwifi-5000-5.ucode
+a:0:0:755
+Z:Q1Ir9gk+2CBAJ8wyB8c50sq5zJLqM=
+

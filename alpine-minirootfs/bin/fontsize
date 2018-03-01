@@ -1,0 +1,96 @@
+#!/bin/sh
+
+# Set console font size
+
+if [ $# -eq 0 ]; then
+    echo -e "\nChange console font size\n"
+    echo -e "Usage: fontsize [1-9]\n"
+    echo -e "Example:\n"
+    echo -e "\tMax size: fontsize 9"
+    echo -e "\tMin size: fontsize 1\n"
+    exit 0
+fi
+
+
+case "$1" in
+    1)
+        setfont ter-u12n.psf.gz -C /dev/tty1
+        setfont ter-u12n.psf.gz -C /dev/tty2
+        setfont ter-u12n.psf.gz -C /dev/tty3
+        setfont ter-u12n.psf.gz -C /dev/tty4
+        setfont ter-u12n.psf.gz -C /dev/tty5
+        setfont ter-u12n.psf.gz -C /dev/tty6
+        ;;
+    2)
+        setfont ter-u14n.psf.gz -C /dev/tty1
+        setfont ter-u14n.psf.gz -C /dev/tty2
+        setfont ter-u14n.psf.gz -C /dev/tty3
+        setfont ter-u14n.psf.gz -C /dev/tty4
+        setfont ter-u14n.psf.gz -C /dev/tty5
+        setfont ter-u14n.psf.gz -C /dev/tty6
+        ;;
+    3)
+        setfont ter-u16n.psf.gz -C /dev/tty1
+        setfont ter-u16n.psf.gz -C /dev/tty2
+        setfont ter-u16n.psf.gz -C /dev/tty3
+        setfont ter-u16n.psf.gz -C /dev/tty4
+        setfont ter-u16n.psf.gz -C /dev/tty5
+        setfont ter-u16n.psf.gz -C /dev/tty6
+        ;;
+    4)
+        setfont ter-u18n.psf.gz -C /dev/tty1
+        setfont ter-u18n.psf.gz -C /dev/tty2
+        setfont ter-u18n.psf.gz -C /dev/tty3
+        setfont ter-u18n.psf.gz -C /dev/tty4
+        setfont ter-u18n.psf.gz -C /dev/tty5
+        setfont ter-u18n.psf.gz -C /dev/tty6
+        ;;
+    5)
+        setfont ter-u20n.psf.gz -C /dev/tty1
+        setfont ter-u20n.psf.gz -C /dev/tty2
+        setfont ter-u20n.psf.gz -C /dev/tty3
+        setfont ter-u20n.psf.gz -C /dev/tty4
+        setfont ter-u20n.psf.gz -C /dev/tty5
+        setfont ter-u20n.psf.gz -C /dev/tty6
+        ;;
+    6)
+        setfont ter-u22b.psf.gz -C /dev/tty1
+        setfont ter-u22b.psf.gz -C /dev/tty2
+        setfont ter-u22b.psf.gz -C /dev/tty3
+        setfont ter-u22b.psf.gz -C /dev/tty4
+        setfont ter-u22b.psf.gz -C /dev/tty5
+        setfont ter-u22b.psf.gz -C /dev/tty6
+        ;;
+    7)
+        setfont ter-u24b.psf.gz -C /dev/tty1
+        setfont ter-u24b.psf.gz -C /dev/tty2
+        setfont ter-u24b.psf.gz -C /dev/tty3
+        setfont ter-u24b.psf.gz -C /dev/tty4
+        setfont ter-u24b.psf.gz -C /dev/tty5
+        setfont ter-u24b.psf.gz -C /dev/tty6
+        ;;
+    8)
+        setfont ter-u28b.psf.gz -C /dev/tty1
+        setfont ter-u28b.psf.gz -C /dev/tty2
+        setfont ter-u28b.psf.gz -C /dev/tty3
+        setfont ter-u28b.psf.gz -C /dev/tty4
+        setfont ter-u28b.psf.gz -C /dev/tty5
+        setfont ter-u28b.psf.gz -C /dev/tty6
+        ;;
+    9)
+        setfont ter-u32b.psf.gz -C /dev/tty1
+        setfont ter-u32b.psf.gz -C /dev/tty2
+        setfont ter-u32b.psf.gz -C /dev/tty3
+        setfont ter-u32b.psf.gz -C /dev/tty4
+        setfont ter-u32b.psf.gz -C /dev/tty5
+        setfont ter-u32b.psf.gz -C /dev/tty6
+        ;;
+    *)
+        echo -e "\nChange console font size\n"
+        echo -e "Usage: fontsize [1-9]\n"
+        echo -e "Example:\n"
+        echo -e "\tMax size: fontsize 9"
+        echo -e "\tMin size: fontsize 1\n"
+        exit 1
+        ;;
+esac

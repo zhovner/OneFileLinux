@@ -15,5 +15,4 @@ softdep ipmi_msghandler post: ipmi_devintf
 softdep ohci_pci pre: ehci_pci
 softdep uhci_hcd pre: ehci_pci
 softdep vfio post: vfio_iommu_type1 vfio_iommu_spapr_tce
-softdep sctp_probe pre: sctp
 softdep libcrc32c pre: crc32c

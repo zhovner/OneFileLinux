@@ -65,7 +65,6 @@ kernel/drivers/input/input-core.ko
 kernel/drivers/input/input-leds.ko
 kernel/drivers/input/mousedev.ko
 kernel/drivers/input/keyboard/atkbd.ko
-kernel/drivers/input/touchscreen/of_touchscreen.ko
 kernel/drivers/input/serio/serio.ko
 kernel/drivers/input/serio/i8042.ko
 kernel/drivers/input/serio/libps2.ko
@@ -99,7 +98,6 @@ kernel/net/ipv4/tcp_cubic.ko
 kernel/net/ipv6/ipv6.ko
 kernel/net/ipv6/mip6.ko
 kernel/net/ipv6/inet6_hashtables.ko
-kernel/net/mpls/mpls_gso.ko
 kernel/net/packet/af_packet.ko
 kernel/net/unix/unix.ko
 kernel/lib/bitrev.ko

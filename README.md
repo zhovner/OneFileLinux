@@ -23,7 +23,6 @@ About in russian: https://habrahabr.ru/post/349758/
 This can be useful when you need Linux on bare metal and can't use USB flash. In comparison with Live USB flash, one file Linux setups permanently in EFI partition and can boot any time later.  
 My personal goal is to use laptop's internal PCIe WiFi card for cracking WiFi with <b>aircrack-ng</b> and <b>reaver</b> software, since PCIe devices can't be forwarded into virtual machine. 
 
----
   
 ## Run on Macbook
 
@@ -72,7 +71,7 @@ This command sets NVRAM option to boot OneFileLinux.efi only once. Next reboot w
 Reboot to run OneFileLinux. Once you've done, type `reboot` in Linux console and go back to macOS.   
 Every time when you need it again, follow steps 2 and 4 from recovery console.
 
----
+
 
 ## Run on PC
 There are few ways how to run OneFileLinux on PC motherboard. Some motherboards have builtin UEFI Shell that can run any efi binary from console.  
@@ -97,7 +96,7 @@ On my ThinkPad X220 I press F12 while power on to open boot menu. Hotkey depends
   
 <img alt="ThinkPad X220 boot menu" width="600" src="https://hub.zhovner.com/img/thinkpad-x220-boot-menu.png" />
 
----
+
 
 ## Run from USB flash
 The only benefit from running OneFileLinux from USB flash, is that no additional software is required to create bootable flash drive.  
@@ -119,7 +118,7 @@ Windows does not allow to format flash drive in GPT scheme from GUI, so you need
 
 Then format drive from `diskmgmt.msc` in FAT32.
 
----
+
 
 ## Build your own 
 

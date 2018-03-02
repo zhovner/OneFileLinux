@@ -1,10 +1,11 @@
 ## One File Linux
-<img width=600 alt="One File Linux" src="https://hub.zhovner.com/img/one-file-linux.png" />
-
 Live linux distro combined in one ~20MB file. Runs on any UEFI computer (PC or Mac) without installation. Just copy one file to EFI system partition and boot.
+
+<img width=600 alt="One File Linux" src="https://hub.zhovner.com/img/one-file-linux.png" />
 
 **Download:** https://github.com/zhovner/OneFileLinux/releases
 
+About in russian: https://habrahabr.ru/post/349758/
 ### Main advantages
 
 * **No installation required** — no need to create additional paritions. Just copy one file to EFI system partition and add new boot entry to NVRAM.
@@ -37,7 +38,7 @@ My personal goal is to use laptop's internal PCIe WiFi card for cracking WiFi wi
 where diskN is your EFI disk number.  
 To find your EFI disk number use `diskutil list` command.  
   
-<img width="500" alt="macOS diskutil list EFI partition" src="/img/diskutil-list-efi.png" />
+<img width="500" alt="macOS diskutil list EFI partition" src="https://hub.zhovner.com/img/diskutil-list-efi.png" />
 
 For me it will be: `diskutil mount disk0s1`
 
@@ -94,7 +95,7 @@ Replace `/dev/sda` to you disk path and `--part 2` to your EFI partition number.
 
 On my ThinkPad X220 I press F12 while power on to open boot menu. Hotkey depends on your motherboard.  
   
-<img alt="ThinkPad X220 boot menu" width="600" src="/img/thinkpad-x220-boot-menu.png" />
+<img alt="ThinkPad X220 boot menu" width="600" src="https://hub.zhovner.com/img/thinkpad-x220-boot-menu.png" />
 
 ---
 

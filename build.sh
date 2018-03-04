@@ -59,6 +59,13 @@ if [ "$(ls -A $MODULESPATH)" ]; then
     rm -r $MODULESPATH*
 fi
 
+# Removing dev bindings
+if [ -e $DEVURANDOM ]; then
+    echo -e "/dev/ bindings found: $DEVURANDOM. Unmounting...\n"
+    umount $DEVURANDOM || echo -e "Not mounted. \n"
+    rm $DEVURANDOM
+fi
+
 
 # Check if console character file exist
 if [ ! -e $DEVCONSOLE ]; then

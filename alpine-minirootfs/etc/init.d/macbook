@@ -4,7 +4,8 @@ description="Loads Macbook specific drivers"
 
 depend()
 {
-	need dev net
+	need dev
+	after connman
 	keyword -openvz -prefix -vserver -lxc
 }
 

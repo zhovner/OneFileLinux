@@ -1,0 +1,20 @@
+#!/sbin/openrc-run
+
+description="Connection Manager"
+cfgfile=/etc/connman/main.conf
+pidfile=/run/connman/connman.pid
+command=/usr/sbin/connmand
+command_args="$command_args -n -c $cfgfile"
+command_background="yes"
+
+depend() {
+	need dbus devfs hwdrivers
+	provide connman
+}
+
+start_pre() {
+	ebegin
+	checkpath --directory ${pidfile%/*}
+	ln -sf ${pidfile%/*}/resolv.conf /etc/
+	eend $?
+}

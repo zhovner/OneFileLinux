@@ -5,7 +5,7 @@ description="Set console font size based on framebuffer resolution. Dirty hack."
 depend()
 {
 	need dev
-	after net
+	after connman
 	keyword -openvz -prefix -vserver -lxc
 }
 

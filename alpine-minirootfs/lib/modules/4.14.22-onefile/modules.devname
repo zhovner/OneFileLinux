@@ -1,7 +1,0 @@
-# Device nodes to trigger on-demand module loading.
-tun net/tun c10:200
-ppp_generic ppp c108:0
-uinput uinput c10:223
-vfio vfio/vfio c10:196
-hci_vhci vhci c10:137
-uhid uhid c10:239

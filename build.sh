@@ -8,6 +8,7 @@ CACHEPATH="$ROOTFS/var/cache/apk/"
 SHELLHISTORY="$ROOTFS/root/.ash_history"
 DEVCONSOLE="$ROOTFS/dev/console"
 MODULESPATH="$ROOTFS/lib/modules/"
+DEVURANDOM="$ROOTFS/dev/urandom"
 
 # Kernel variables
 KERNELVERSION="4.14.22-onefile"
@@ -34,6 +35,11 @@ echo "  |_______________| "
 echo "                    "
 echo "   OneFileLinux.efi "
 
+# Print version from /etc/issue
+echo -n -e "\n   Version in banner: "
+grep -Eo "v[0-9\.a-z-]+" $ROOTFS/etc/issue
+echo -e ""
+
 ##########################
 # Checking root filesystem
 ##########################
@@ -59,6 +65,12 @@ if [ "$(ls -A $MODULESPATH)" ]; then
     rm -r $MODULESPATH*
 fi
 
+# Removing dev bindings
+if [ -e $DEVURANDOM ]; then
+    echo -e "/dev/ bindings found: $DEVURANDOM. Unmounting...\n"
+    umount $DEVURANDOM || echo -e "Not mounted. \n"
+    rm $DEVURANDOM
+fi
 
 # Check if console character file exist
 if [ ! -e $DEVCONSOLE ]; then
@@ -74,10 +86,6 @@ else
         echo -e "ERROR: Console device is a regular: $DEVCONSOLE \nPlease create device file:  mknod -m 600 $DEVCONSOLE c 5 1"
     fi
 fi
-
-# Print version from /etc/issue
-echo -n "Version in banner: " 
-grep -Eo "v[0-9\.]+" $ROOTFS/etc/issue
 
 # Print rootfs uncompressed size
 echo -e "Uncompressed root filesystem size WITHOUT kernel modules: $(du -sh $ROOTFS | cut -f1)\n"

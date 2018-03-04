@@ -1,0 +1,40 @@
+###########################################
+# How to connect to WiFi from command line
+###########################################
+
+
+
+# Start wpa_supplicant service
+# This will automatically enabling all wireless interfaces
+$ /etc/init.d/wpa_supplicant start
+
+# Run wpa_supplicant interactive console
+$ wpa_cli
+
+# Scan wifi networks
+> scan
+
+> scan_results
+
+# Create new empty network profile
+> add_network
+
+# Set SSID on your network
+> set_network 0 ssid "MYSSID"
+
+# For encrypted network
+> set_network 0 psk "MyPa$$word123"
+
+# For open network
+> set_network 0 key_mgmt NONE
+
+> enable_network 0
+
+> quit
+
+
+# Request ip address via DHCP 
+udhcpc -i wlan0
+
+# Or assing ip address manually
+ip addr del 192.0.2.10/24 dev wlan0

@@ -1,7 +1,7 @@
 echo "Weclome to One File Linux!
+To report a bugs: https://github.com/zhovner/OneFileLinux
 
-Feel free to report a bugs: https://github.com/zhovner/OneFileLinux
-
-You can change console font size: fontsize [1-9]
+To change console font size: fontsize [1-9]
+To connect WiFi read: /usr/share/doc/wifi-howto.txt
 
 "

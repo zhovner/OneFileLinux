@@ -8,9 +8,6 @@ dmidecode
 dropbear
 dropbear-ssh
 efibootmgr
-iwlwifi-1000-ucode
-iwlwifi-5000-ucode
-iwlwifi-6000-ucode
 libc-utils
 nano
 openrc

@@ -8,6 +8,7 @@ CACHEPATH="$ROOTFS/var/cache/apk/"
 SHELLHISTORY="$ROOTFS/root/.ash_history"
 DEVCONSOLE="$ROOTFS/dev/console"
 MODULESPATH="$ROOTFS/lib/modules/"
+DEVURANDOM="$ROOTFS/dev/urandom"
 
 # Kernel variables
 KERNELVERSION="4.14.22-onefile"

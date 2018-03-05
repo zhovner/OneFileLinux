@@ -10,6 +10,7 @@
 # Normal rules (sorted alphabetically)
 #
 .*
+!.config
 *.a
 *.bin
 *.bz2

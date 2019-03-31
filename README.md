@@ -143,6 +143,6 @@ Password: toor
 
 Just login and run:
 ```
-cd /root/onefilelinix/
+cd /root/onefilelinux/
 ./build.sh
 ```

@@ -137,7 +137,7 @@ It based on Alpine Linux and vanilla kernel.
 ## Virtual Machine ready to go build environment
 You can download vm image with completely configured environment.  
 Torrent file: [kali64.vmwarevm.7z.torrent](https://github.com/zhovner/OneFileLinux/blob/master/kali64.vmwarevm.7z.torrent)  
-VMware Player/Workstation or VMware Fusion recommended. 
+VMware Player/Workstation or VMware Fusion recommended.  
 Username: root  
 Password: toor  
 

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export INITRAMFS=1
+exec /sbin/init

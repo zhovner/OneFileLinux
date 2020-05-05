@@ -14,3 +14,6 @@ Run 01..
 Run 02..
 Run 03..
 Run 04..
+
+## OneFileLinux.efi
+Password for root is toor
